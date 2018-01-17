@@ -38,17 +38,6 @@ public class MainActivity extends AppCompatActivity {
         ImageRecyclerViewAdapter recyclerViewAdapter = new ImageRecyclerViewAdapter(MainActivity.this, staggeredList);
         recyclerView.setAdapter(recyclerViewAdapter);
 
-
-        int mat[][] = { { 2, 3, 8 },
-                { 5, 1, 7 },
-                { 9, 2, 6 } };
-        int new_mat[][] = bucketPaint(mat);
-        System.out.println("mat : ");
-        display(mat);
-        System.out.println("new_mat : ");
-        display(new_mat);
-
-
     }
 
     @Override
@@ -106,38 +95,4 @@ public class MainActivity extends AppCompatActivity {
 
         return listViewItems;
     }
-
-    static int [][] bucketPaint( int dataArray[][], int x, int y, int color)
-    {
-        int numberOfRows = dataArray.length;  // get the no. of rows
-        int numberOfCols = dataArray[0].length;  // get the no. of columns
-
-        // Base case terminations
-        if (x < 0 ||  x > numberOfRows || y < 0 || y > numberOfCols)
-            return;
-        if (dataArray[x][y] == color)
-            return;
-
-        // Replace the color at (x, y)
-        dataArray[x][y] = color;
-
-        // Recur for Adjacent cells
-        bucketPaint(dataArray, x+1, y, color);
-        bucketPaint(dataArray, x-1, y, color);
-        bucketPaint(dataArray, x, y+1, color);
-        bucketPaint(dataArray, x, y-1, color);
-    }
-
-    static void display(int mat[][]) {
-        for ( int i = 0; i < mat.length; i++ ) {
-            for ( int j = 0; j < mat[0].length; j++ ) {
-                System.out.print(mat[i][j] + " ");
-            }
-            System.out.println();
-        }
-    }
-
-
-
-
 }
